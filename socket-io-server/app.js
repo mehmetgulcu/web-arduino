@@ -14,7 +14,12 @@ const events = require('events');
 const eventEmitter = new events.EventEmitter();
 
 app.use(index);
-app.use(express.static(path.join(__dirname, 'socket-io-client/build')));
+
+app.use(express.static(path.join(__dirname, 'socket-io-client')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/socket-io-client/index.html'));
+});
+
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
