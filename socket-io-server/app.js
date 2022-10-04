@@ -13,6 +13,8 @@ const app = express();
 const events = require('events');
 const eventEmitter = new events.EventEmitter();
 
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.use(index);
 
 const server = http.createServer(app);
