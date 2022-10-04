@@ -13,10 +13,8 @@ const app = express();
 const events = require('events');
 const eventEmitter = new events.EventEmitter();
 
-app.use(express.static(path.join(__dirname, 'client/build')));
-
 app.use(index);
-
+app.use(express.static(path.join(__dirname, 'socket-io-client/build')));
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
