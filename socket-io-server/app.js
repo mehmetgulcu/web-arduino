@@ -16,10 +16,9 @@ const eventEmitter = new events.EventEmitter();
 
 app.use(index);
 
-app.use(express.static(path.join(__dirname, 'socket-io-client')));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/socket-io-client/public/index.html'));
-});
+app.get('/', (req, res) => {
+  res.sendFile('index.html', {root: path.join(__dirname, 'socket-io-client/public')});
+})
 
 const server = http.createServer(app);
 const io = socketIo(server, {
